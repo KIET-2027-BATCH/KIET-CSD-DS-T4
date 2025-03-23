@@ -1,0 +1,4 @@
+date,airline,source_city,destination_city,class,departure_time,arrival_time,duration,days_left,price,stops
+15-07-2023,AirIndia,Mumbai,Delhi,Economy,18:00,20:00,2,5,5200,0
+16-07-2023,Indigo,Delhi,Mumbai,Economy,08:00,10:30,2.5,3,6100,1
+17-07-2023,SpiceJet,Bangalore,Chennai,Business,Morning,Evening,3,7,8500,1

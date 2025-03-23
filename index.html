@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroPredict - Flight Price Prediction</title>
+  <meta name="description" content="Predict flight prices with AI-powered algorithms">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="./css/styles.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <div class="logo-circle"></div>
+          <div class="logo-dot"></div>
+        </div>
+        <span>AeroPredict</span>
+      </a>
+      
+      <nav class="nav-desktop">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#prediction" class="nav-link">Flight Prediction</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      
+      <div class="nav-actions">
+        <!-- Sign in button removed -->
+      </div>
+      
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars open-icon"></i>
+        <i class="fas fa-times close-icon"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile menu -->
+    <div class="mobile-menu">
+      <nav>
+        <a href="#" class="nav-link">Home</a>
+        <a href="#prediction" class="nav-link">Flight Prediction</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <!-- Sign in button removed -->
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge">
+          <p>Intelligent Flight Predictions</p>
+        </div>
+        
+        <h1 class="hero-title">
+          Predict Flight Prices <br class="md-only">
+          <span class="accent">with Precision</span>
+        </h1>
+        
+        <p class="hero-text">
+          Our AI-powered algorithm analyzes millions of flight data points to predict the best time to book your next journey. Save up to 60% on your air travel.
+        </p>
+      </div>
+      
+      <!-- Search Form -->
+      <div class="search-form-container">
+        <div class="search-form">
+          <form id="predictionForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="departure">Departure</label>
+                <div class="input-icon">
+                  <i class="fas fa-location-arrow"></i>
+                  <input type="text" id="departure" name="departure" placeholder="City or airport" list="indian-cities-departure" required>
+                  <datalist id="indian-cities-departure">
+                    <option value="Delhi (DEL)"></option>
+                    <option value="Mumbai (BOM)"></option>
+                    <option value="Bangalore (BLR)"></option>
+                    <option value="Hyderabad (HYD)"></option>
+                    <option value="Chennai (MAA)"></option>
+                    <option value="Kolkata (CCU)"></option>
+                    <option value="Ahmedabad (AMD)"></option>
+                    <option value="Kochi (COK)"></option>
+                    <option value="Goa (GOI)"></option>
+                    <option value="Jaipur (JAI)"></option>
+                  </datalist>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="destination">Destination</label>
+                <div class="input-icon">
+                  <i class="fas fa-plane"></i>
+                  <input type="text" id="destination" name="destination" placeholder="City or airport" list="indian-cities-destination" required>
+                  <datalist id="indian-cities-destination">
+                    <option value="Delhi (DEL)"></option>
+                    <option value="Mumbai (BOM)"></option>
+                    <option value="Bangalore (BLR)"></option>
+                    <option value="Hyderabad (HYD)"></option>
+                    <option value="Chennai (MAA)"></option>
+                    <option value="Kolkata (CCU)"></option>
+                    <option value="Ahmedabad (AMD)"></option>
+                    <option value="Kochi (COK)"></option>
+                    <option value="Goa (GOI)"></option>
+                    <option value="Jaipur (JAI)"></option>
+                  </datalist>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="departDate">Depart Date</label>
+                <div class="input-icon">
+                  <i class="fas fa-calendar"></i>
+                  <input type="date" id="departDate" name="departDate" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="returnDate">Return Date (Optional)</label>
+                <div class="input-icon">
+                  <i class="fas fa-calendar"></i>
+                  <input type="date" id="returnDate" name="returnDate">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="passengers">Passengers</label>
+                <div class="input-icon">
+                  <i class="fas fa-users"></i>
+                  <select id="passengers" name="passengers">
+                    <option value="1">1 Passenger</option>
+                    <option value="2">2 Passengers</option>
+                    <option value="3">3 Passengers</option>
+                    <option value="4">4 Passengers</option>
+                    <option value="5">5 Passengers</option>
+                    <option value="6">6 Passengers</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="class">Class</label>
+                <div class="input-icon">
+                  <select id="class" name="class">
+                    <option value="Economy">Economy</option>
+                    <option value="Premium Economy">Premium Economy</option>
+                    <option value="Business">Business</option>
+                    <option value="First">First Class</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-submit">
+              <button type="submit" class="btn btn-accent">
+                <span>Predict Price</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Prediction Results (initially hidden) -->
+        <div class="prediction-results" id="predictionResults">
+          <div class="results-header">
+            <h3>Prediction Results</h3>
+            <button class="close-results" id="closeResults">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          
+          <div class="results-grid">
+            <div class="result-item">
+              <p class="result-label">Predicted Price Range</p>
+              <p class="result-value">₹4,990 - ₹6,420</p>
+            </div>
+            
+            <div class="result-item">
+              <p class="result-label">Best Time to Book</p>
+              <p class="result-value">2-3 weeks before departure</p>
+            </div>
+            
+            <div class="result-item">
+              <p class="result-label">Price Confidence</p>
+              <div class="confidence-bar">
+                <div class="confidence-level" style="width: 85%"></div>
+                <span>85%</span>
+              </div>
+            </div>
+          </div>
+          
+          <p class="result-description">
+            Based on historical data and current market trends, we predict prices will 
+            <span class="accent-text">decrease by 5-10%</span> 
+            in the next 14 days before rising sharply.
+          </p>
+          
+          <div class="results-actions">
+            <button class="btn btn-primary">Set Price Alert</button>
+            <button class="btn btn-outline">View Price History</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-number">95%</div>
+          <div class="stat-label">Prediction Accuracy</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">2.5M+</div>
+          <div class="stat-label">Flights Tracked</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">₹16,000</div>
+          <div class="stat-label">Avg. User Savings</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">60+</div>
+          <div class="stat-label">Airlines Covered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Trending Flights Section -->
+  <section class="trending-flights">
+    <div class="container">
+      <div class="section-header">
+        <h2>Trending Flight Deals</h2>
+        <p>
+          Popular routes with the most significant price changes in the last 24 hours.
+          Our AI predicts these trends will continue for the next few days.
+        </p>
+      </div>
+      
+      <div class="flights-grid">
+        <!-- Flight Card 1 -->
+        <div class="flight-card" data-delay="0">
+          <div class="flight-image">
+            <img src="https://images.unsplash.com/photo-1566552881560-02559a8a11c9?q=80&w=2070" alt="Mumbai cityscape">
+            <div class="image-overlay"></div>
+            <div class="flight-destination">
+              <p class="from-text">Delhi to</p>
+              <h3>Mumbai</h3>
+            </div>
+          </div>
+          
+          <div class="flight-details">
+            <div class="price-info">
+              <div>
+                <p class="price-label">Current Price</p>
+                <p class="price-value">₹5,490</p>
+              </div>
+              
+              <div class="trend down">
+                <i class="fas fa-arrow-trend-down"></i>
+                <span>15%</span>
+              </div>
+            </div>
+            
+            <button class="deal-button">
+              View Deal
+              <i class="fas fa-arrow-up-right"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Flight Card 2 -->
+        <div class="flight-card" data-delay="1">
+          <div class="flight-image">
+            <img src="https://images.unsplash.com/photo-1536421589166-abee46273b42?q=80&w=2070" alt="Kolkata cityscape">
+            <div class="image-overlay"></div>
+            <div class="flight-destination">
+              <p class="from-text">Bangalore to</p>
+              <h3>Kolkata</h3>
+            </div>
+          </div>
+          
+          <div class="flight-details">
+            <div class="price-info">
+              <div>
+                <p class="price-label">Current Price</p>
+                <p class="price-value">₹6,780</p>
+              </div>
+              
+              <div class="trend up">
+                <i class="fas fa-arrow-trend-up"></i>
+                <span>8%</span>
+              </div>
+            </div>
+            
+            <button class="deal-button">
+              View Deal
+              <i class="fas fa-arrow-up-right"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Flight Card 3 -->
+        <div class="flight-card" data-delay="2">
+          <div class="flight-image">
+            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=2070" alt="Hyderabad cityscape">
+            <div class="image-overlay"></div>
+            <div class="flight-destination">
+              <p class="from-text">Chennai to</p>
+              <h3>Hyderabad</h3>
+            </div>
+          </div>
+          
+          <div class="flight-details">
+            <div class="price-info">
+              <div>
+                <p class="price-label">Current Price</p>
+                <p class="price-value">₹4,520</p>
+              </div>
+              
+              <div class="trend down">
+                <i class="fas fa-arrow-trend-down"></i>
+                <span>12%</span>
+              </div>
+            </div>
+            
+            <button class="deal-button">
+              View Deal
+              <i class="fas fa-arrow-up-right"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Flight Card 4 -->
+        <div class="flight-card" data-delay="3">
+          <div class="flight-image">
+            <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=2070" alt="Jaipur cityscape">
+            <div class="image-overlay"></div>
+            <div class="flight-destination">
+              <p class="from-text">Goa to</p>
+              <h3>Jaipur</h3>
+            </div>
+          </div>
+          
+          <div class="flight-details">
+            <div class="price-info">
+              <div>
+                <p class="price-label">Current Price</p>
+                <p class="price-value">₹7,230</p>
+              </div>
+              
+              <div class="trend stable">
+                <span>Stable</span>
+              </div>
+            </div>
+            
+            <button class="deal-button">
+              View Deal
+              <i class="fas fa-arrow-up-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Prediction Result Section -->
+  <section id="prediction" class="prediction-result">
+    <div class="container">
+      <div class="section-header">
+        <h2>Your Flight Prediction</h2>
+        <p>
+          Our AI has analyzed thousands of similar routes to provide you with the most accurate price prediction.
+        </p>
+      </div>
+      
+      <div class="result-card">
+        <!-- Header -->
+        <div class="result-header">
+          <div class="result-route">
+            <div class="route-info">
+              <span>Delhi (DEL)</span>
+              <div class="route-line"></div>
+              <span>Mumbai (BOM)</span>
+            </div>
+            <h3 class="predicted-price">
+              ₹4,990
+              <span>predicted price</span>
+            </h3>
+          </div>
+          
+          <div class="result-actions">
+            <button class="icon-button" title="Copy to clipboard">
+              <i class="fas fa-clipboard"></i>
+            </button>
+            <button class="icon-button" title="Share">
+              <i class="fas fa-share"></i>
+            </button>
+            <button class="icon-button" title="Set price alert">
+              <i class="fas fa-bell"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="result-content">
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-calendar"></i>
+              </div>
+              <div>
+                <p class="info-label">Departure</p>
+                <p class="info-value">Dec 15, 2023</p>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <p class="info-label">Current Price</p>
+              <p class="info-value strikethrough">₹5,490</p>
+            </div>
+            
+            <div class="info-item">
+              <div class="confidence-info">
+                <p class="info-label">Price Confidence</p>
+                <div class="confidence-badge">92%</div>
+              </div>
+              <div class="confidence-bar">
+                <div class="confidence-level" style="width: 92%"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="price-alert">
+            <div class="trend-icon down">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <p>
+              <span class="bold">Prices expected to drop</span> by 
+              <span class="green bold">9.1%</span> 
+              in the next 2 weeks.
+              <span class="muted"> We recommend waiting to book.</span>
+            </p>
+          </div>
+          
+          <div class="airlines-comparison">
+            <div class="comparison-header" id="comparisonToggle">
+              <h4>Airline Comparison</h4>
+              <button class="toggle-button">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            
+            <div class="comparison-content" id="comparisonContent">
+              <div class="airline-row">
+                <div class="airline-info">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Air_India_Logo.svg" alt="Air India">
+                  <span>Air India</span>
+                </div>
+                <span class="airline-price">₹5,490</span>
+              </div>
+              
+              <div class="airline-row">
+                <div class="airline-info">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/IndiGo_Airlines_logo.svg/250px-IndiGo_Airlines_logo.svg.png" alt="IndiGo">
+                  <span>IndiGo</span>
+                </div>
+                <span class="airline-price">₹5,890</span>
+              </div>
+              
+              <div class="airline-row">
+                <div class="airline-info">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Vistara-2015.png" alt="Vistara">
+                  <span>Vistara</span>
+                </div>
+                <span class="airline-price">₹6,280</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="result-buttons">
+            <button class="btn btn-accent">Book Now</button>
+            <button class="btn btn-outline">Set Price Alert</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section id="about" class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+        <p>
+          Our advanced algorithm analyzes billions of data points to predict the optimal time to book your flights.
+        </p>
+      </div>
+      
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Real-time Data Analysis</h3>
+          <p>Our AI constantly monitors flight prices, historical trends, and seasonal patterns to deliver accurate predictions.</p>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cube"></i>
+          </div>
+          <h3>Predictive Algorithms</h3>
+          <p>Using machine learning models trained on millions of flight records to predict future price movements with high accuracy.</p>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Personalized Recommendations</h3>
+          <p>Get tailored advice on when to book based on your specific travel preferences and flexibility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section id="contact" class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Start Saving on Flights?</h2>
+        <p>
+          Join thousands of travelers who are already saving up to 40% on their flight bookings with our predictions.
+        </p>
+        <div class="cta-buttons">
+          <button class="btn btn-light">Get Started</button>
+          <button class="btn btn-outline-light">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">
+              <div class="logo-circle"></div>
+              <div class="logo-dot"></div>
+            </div>
+            <span>AeroPredict</span>
+          </div>
+          <p>
+            We leverage advanced AI and machine learning to predict flight prices with remarkable accuracy, 
+            helping travelers save money and book with confidence.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="twitter link"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="facebook link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="instagram link"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="linkedin link"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Airlines</a></li>
+            <li><a href="#">Data Sources</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© <span id="current-year"></span> AeroPredict. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="./js/config.js" type="module"></script>
+  <script src="./js/script.js" type="module"></script>
+</body>
+</html>
